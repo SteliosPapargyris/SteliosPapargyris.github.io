@@ -10,72 +10,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080d14;
-      --bg2: #0d1520;
-      --bg3: #111d2e;
-      --panel: #0f1a27;
-      --border: rgba(100, 180, 255, 0.1);
-      --border-bright: rgba(100, 180, 255, 0.25);
-      --text: #c8daf0;
-      --text-dim: #6a8aaa;
-      --text-dimmer: #3a5570;
-      --accent: #4da6ff;
-      --accent2: #00d4aa;
-      --mono: 'Space Mono', monospace;
-      --sans: 'DM Sans', sans-serif;
+      --bg: #080d14; --bg2: #0d1520; --bg3: #111d2e; --panel: #0f1a27;
+      --border: rgba(100, 180, 255, 0.1); --border-bright: rgba(100, 180, 255, 0.25);
+      --text: #c8daf0; --text-dim: #6a8aaa; --text-dimmer: #3a5570;
+      --accent: #4da6ff; --accent2: #00d4aa;
+      --mono: 'Space Mono', monospace; --sans: 'DM Sans', sans-serif;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(77,166,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(77,166,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(77,166,255,0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(77,166,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(77,166,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; z-index: 0; }
+    body::after { content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(77,166,255,0.06) 0%, transparent 70%); pointer-events: none; z-index: 0; }
     .container { max-width: 860px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 0;
-      background: rgba(8,13,20,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(8,13,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     nav .inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.05em; text-decoration: none; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
-
     .hero { padding: 160px 0 60px; }
     .hero-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s; }
     .hero h1 { font-weight: 300; font-size: clamp(38px, 6vw, 62px); line-height: 1.15; letter-spacing: -0.02em; color: #e8f4ff; margin-bottom: 8px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
@@ -84,13 +36,11 @@
     .hero-bio { font-size: 16px; color: var(--text-dim); max-width: 560px; line-height: 1.8; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.4s; }
     .hero-bio strong { color: var(--text); font-weight: 400; }
     .hero-links { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s ease forwards 0.5s; }
-
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; text-decoration: none; transition: all 0.2s; }
     .btn-primary { background: var(--accent); color: #000; font-weight: 700; }
     .btn-primary:hover { background: #7dbfff; transform: translateY(-1px); }
     .btn-secondary { background: transparent; color: var(--text-dim); border: 1px solid var(--border-bright); }
     .btn-secondary:hover { color: var(--text); border-color: var(--accent); transform: translateY(-1px); }
-
     .feature-box { margin: 64px 0; border: 1px solid var(--border-bright); border-radius: 8px; overflow: hidden; background: var(--panel); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; position: relative; }
     .feature-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
     .feature-header { padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
@@ -107,18 +57,9 @@
     .stat-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; }
     .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 4px; }
     .stat-value { font-family: var(--mono); font-size: 15px; color: var(--accent); }
-
-    /* SECTIONS */
     section { padding: 80px 0; border-top: 1px solid var(--border); }
-
-    .section-label {
-      font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 40px;
-      display: flex; align-items: center; gap: 16px;
-    }
+    .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
     .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-    /* EXPERIENCE */
     .exp-item { display: grid; grid-template-columns: 160px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border); }
     .exp-item:last-child { border-bottom: none; }
     .exp-date { font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); line-height: 1.5; }
@@ -132,20 +73,31 @@
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
     .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; background: var(--bg3); border: 1px solid var(--border); color: var(--text-dimmer); }
 
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .project-card { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 24px; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--border); transition: background 0.2s; }
+    .project-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+    .project-card:hover::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .project-card h3 { font-size: 15px; font-weight: 400; color: #e8f4ff; margin-bottom: 8px; }
+    .project-card p { font-size: 13px; color: var(--text-dim); line-height: 1.7; margin-bottom: 16px; }
+    .project-links { display: flex; gap: 12px; }
+    .project-links a { font-family: var(--mono); font-size: 11px; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; }
+    .project-links a:hover { text-decoration: underline; }
+
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .feature-body { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .projects-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <div class="inner">
       <a class="nav-logo" href="#">SP_</a>
@@ -165,11 +117,7 @@
       <p class="hero-label">// weather ml engineer</p>
       <h1><strong>Stylianos</strong> Papargyris</h1>
       <p class="hero-title">Thessaloniki, Greece &nbsp;·&nbsp; Open to remote</p>
-      <p class="hero-bio">
-        Machine Learning Engineer at the intersection of <strong>weather AI and operational forecasting</strong>.
-        I build production systems that turn raw atmospheric data into decisions —
-        from ECMWF ensemble bias correction to real-time precipitation nowcasting covering all of Europe.
-      </p>
+      <p class="hero-bio">Machine Learning Engineer at the intersection of <strong>weather AI and operational forecasting</strong>. I build production systems that turn raw atmospheric data into decisions — from ECMWF ensemble bias correction to real-time precipitation nowcasting covering all of Europe.</p>
       <div class="hero-links">
         <a class="btn btn-primary" href="https://www.precipiteau.com" target="_blank">↗ precipiteau.com</a>
         <a class="btn btn-secondary" href="https://github.com/SteliosPapargyris" target="_blank">GitHub</a>
@@ -202,33 +150,21 @@
       </div>
     </div>
 
-    <!-- EXPERIENCE -->
     <section id="experience">
       <div class="section-label">Experience</div>
-
       <div class="exp-item reveal">
-        <div>
-          <div class="exp-date">Jan 2025<br>Present</div>
-          <a class="exp-company" href="https://weatherxm.com" target="_blank">WeatherXM</a>
-        </div>
+        <div><div class="exp-date">Jan 2025<br>Present</div><a class="exp-company" href="https://weatherxm.com" target="_blank">WeatherXM</a></div>
         <div>
           <div class="exp-role">Weather Data Scientist</div>
           <ul class="exp-bullets">
             <li>Built an <strong>end-to-end ML pipeline for bias-correcting ECMWF seasonal forecasts</strong> using ERA5 reanalysis, processing 51-member ensembles across 14+ global regions with XGBoost.</li>
             <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> processing ERA5 climate reanalysis to classify destination risk and resolve travel insurance contracts via threshold-based precipitation analysis.</li>
           </ul>
-          <div class="tags">
-            <span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span>
-            <span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span>
-          </div>
+          <div class="tags"><span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span></div>
         </div>
       </div>
-
       <div class="exp-item reveal">
-        <div>
-          <div class="exp-date">Oct 2023<br>Jan 2025</div>
-          <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
-        </div>
+        <div><div class="exp-date">Oct 2023<br>Jan 2025</div><a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a></div>
         <div>
           <div class="exp-role">Machine Learning Engineer &amp; IoT Developer</div>
           <ul class="exp-bullets">
@@ -236,26 +172,48 @@
             <li>Designed <strong>edge computing solutions</strong> for IoT data execution and sharing in smart building energy management systems.</li>
             <li>Built an ML model for <strong>predictive maintenance of photovoltaic systems</strong> by forecasting State of Charge degradation patterns.</li>
           </ul>
-          <div class="tags">
-            <span class="tag">Reinforcement Learning</span><span class="tag">PyTorch</span>
-            <span class="tag">IoT / Edge</span><span class="tag">Renewable Energy</span>
-          </div>
+          <div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">PyTorch</span><span class="tag">IoT / Edge</span><span class="tag">Renewable Energy</span></div>
         </div>
       </div>
-
       <div class="exp-item reveal">
-        <div>
-          <div class="exp-date">Jul 2022<br>Sep 2022</div>
-          <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
-        </div>
+        <div><div class="exp-date">Jul 2022<br>Sep 2022</div><a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a></div>
         <div>
           <div class="exp-role">Machine Learning Engineer — Internship</div>
           <ul class="exp-bullets">
             <li>Prototyped ML models for predictive maintenance of photovoltaic systems, focused on State of Charge degradation forecasting.</li>
           </ul>
-          <div class="tags">
-            <span class="tag">Python</span><span class="tag">scikit-learn</span>
-          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <h3>ECMWF Bias Correction Pipeline</h3>
+          <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions. Evaluated with CRPS and Brier skill scores.</p>
+          <div class="tags" style="margin-bottom:14px;"><span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span></div>
+          <div class="project-links"><a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a></div>
+        </div>
+        <div class="project-card reveal">
+          <h3>Parametric Insurance Automation</h3>
+          <p>Automated travel insurance contract resolution by processing ERA5 precipitation fields to classify destination risk via threshold-based event triggers — fully replacing manual adjudication.</p>
+          <div class="tags" style="margin-bottom:14px;"><span class="tag">ERA5</span><span class="tag">Climate Risk</span><span class="tag">Python</span></div>
+          <div class="project-links"><a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a></div>
+        </div>
+        <div class="project-card reveal">
+          <h3>AE Compensation for SHFT Spectrometers</h3>
+          <p>Denoising autoencoder pipeline that reconstructs distorted interferometric responses from silicon photonic gas sensors into stable reference domains, enabling robust on-chip air pollutant detection.</p>
+          <div class="tags" style="margin-bottom:14px;"><span class="tag">Autoencoders</span><span class="tag">PyTorch</span><span class="tag">Gas Sensing</span></div>
+          <div class="project-links"><a href="https://eannconf.org/2026/" target="_blank">EANN 2026 →</a></div>
+        </div>
+        <div class="project-card reveal">
+          <h3>MSc Thesis — Pollution Detection</h3>
+          <p>Deep learning system for environmental pollution detection from sensor data, developed as part of the MSc in Artificial Intelligence at Aristotle University of Thessaloniki.</p>
+          <div class="tags" style="margin-bottom:14px;"><span class="tag">Deep Learning</span><span class="tag">Environmental AI</span></div>
+          <div class="project-links"><a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a></div>
         </div>
       </div>
     </section>
@@ -265,12 +223,9 @@
   <script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
   </script>
-
 </body>
 </html>
