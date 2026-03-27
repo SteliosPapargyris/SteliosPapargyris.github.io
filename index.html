@@ -60,33 +60,17 @@
       z-index: 0;
     }
 
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 32px;
-      position: relative;
-      z-index: 1;
-    }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 16px 0;
       background: rgba(8,13,20,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
 
-    nav .inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    nav .inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.05em; text-decoration: none; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
@@ -107,76 +91,56 @@
     .btn-secondary { background: transparent; color: var(--text-dim); border: 1px solid var(--border-bright); }
     .btn-secondary:hover { color: var(--text); border-color: var(--accent); transform: translateY(-1px); }
 
-    /* FEATURE BOX */
-    .feature-box {
-      margin: 64px 0;
-      border: 1px solid var(--border-bright);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--panel);
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.6s;
-      position: relative;
-    }
-
-    .feature-box::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-    }
-
-    .feature-header {
-      padding: 20px 28px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .feature-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--accent2);
-      box-shadow: 0 0 12px var(--accent2);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.85); }
-    }
-
+    .feature-box { margin: 64px 0; border: 1px solid var(--border-bright); border-radius: 8px; overflow: hidden; background: var(--panel); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; position: relative; }
+    .feature-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .feature-header { padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+    .feature-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 12px var(--accent2); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.85); } }
     .feature-header-text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); }
     .feature-header-url { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); }
-
-    .feature-body {
-      padding: 28px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-
-    .feature-desc h3 { font-size: 20px; font-weight: 400; color: #e8f4ff; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .feature-body { padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .feature-desc h3 { font-size: 20px; font-weight: 400; color: #e8f4ff; margin-bottom: 12px; }
     .feature-desc p { font-size: 14px; color: var(--text-dim); line-height: 1.75; margin-bottom: 16px; }
-    .feature-desc a { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12px; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; }
+    .feature-desc a { font-family: var(--mono); font-size: 12px; color: var(--accent); text-decoration: none; }
     .feature-desc a:hover { text-decoration: underline; }
-
     .feature-stats { display: flex; flex-direction: column; gap: 12px; }
-
     .stat-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; }
     .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 4px; }
     .stat-value { font-family: var(--mono); font-size: 15px; color: var(--accent); }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* SECTIONS */
+    section { padding: 80px 0; border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 40px;
+      display: flex; align-items: center; gap: 16px;
     }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* EXPERIENCE */
+    .exp-item { display: grid; grid-template-columns: 160px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date { font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); line-height: 1.5; }
+    .exp-company { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: 6px; display: block; text-decoration: none; }
+    .exp-company:hover { text-decoration: underline; }
+    .exp-role { font-size: 16px; font-weight: 400; color: #e8f4ff; margin-bottom: 10px; }
+    .exp-bullets { list-style: none; padding: 0; }
+    .exp-bullets li { font-size: 14px; color: var(--text-dim); line-height: 1.75; padding-left: 16px; position: relative; margin-bottom: 6px; }
+    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--text-dimmer); }
+    .exp-bullets li strong { color: var(--text); font-weight: 400; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; background: var(--bg3); border: 1px solid var(--border); color: var(--text-dimmer); }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .feature-body { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
     }
   </style>
 </head>
@@ -238,7 +202,75 @@
       </div>
     </div>
 
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">Experience</div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-date">Jan 2025<br>Present</div>
+          <a class="exp-company" href="https://weatherxm.com" target="_blank">WeatherXM</a>
+        </div>
+        <div>
+          <div class="exp-role">Weather Data Scientist</div>
+          <ul class="exp-bullets">
+            <li>Built an <strong>end-to-end ML pipeline for bias-correcting ECMWF seasonal forecasts</strong> using ERA5 reanalysis, processing 51-member ensembles across 14+ global regions with XGBoost.</li>
+            <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> processing ERA5 climate reanalysis to classify destination risk and resolve travel insurance contracts via threshold-based precipitation analysis.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span>
+            <span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-date">Oct 2023<br>Jan 2025</div>
+          <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
+        </div>
+        <div>
+          <div class="exp-role">Machine Learning Engineer &amp; IoT Developer</div>
+          <ul class="exp-bullets">
+            <li>Developed a <strong>reinforcement learning optimisation system</strong> for multi-source heat pump control, dynamically selecting between ambient air, geothermal, and solar energy sources to maximise COP.</li>
+            <li>Designed <strong>edge computing solutions</strong> for IoT data execution and sharing in smart building energy management systems.</li>
+            <li>Built an ML model for <strong>predictive maintenance of photovoltaic systems</strong> by forecasting State of Charge degradation patterns.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Reinforcement Learning</span><span class="tag">PyTorch</span>
+            <span class="tag">IoT / Edge</span><span class="tag">Renewable Energy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-date">Jul 2022<br>Sep 2022</div>
+          <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
+        </div>
+        <div>
+          <div class="exp-role">Machine Learning Engineer — Internship</div>
+          <ul class="exp-bullets">
+            <li>Prototyped ML models for predictive maintenance of photovoltaic systems, focused on State of Charge degradation forecasting.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
