@@ -4,121 +4,706 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stylianos Papargyris — Weather ML Engineer</title>
-  <meta name="description" content="Machine Learning Engineer specialising in weather AI, nowcasting, and operational forecasting systems."/>
+  <meta name="description" content="Machine Learning Engineer specialising in weather AI, nowcasting, and operational forecasting systems. Builder of Precipiteau."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080d14; --bg2: #0d1520; --bg3: #111d2e; --panel: #0f1a27;
-      --border: rgba(100, 180, 255, 0.1); --border-bright: rgba(100, 180, 255, 0.25);
-      --text: #c8daf0; --text-dim: #6a8aaa; --text-dimmer: #3a5570;
-      --accent: #4da6ff; --accent2: #00d4aa;
-      --mono: 'Space Mono', monospace; --sans: 'DM Sans', sans-serif;
+      --bg: #080d14;
+      --bg2: #0d1520;
+      --bg3: #111d2e;
+      --panel: #0f1a27;
+      --border: rgba(100, 180, 255, 0.1);
+      --border-bright: rgba(100, 180, 255, 0.25);
+      --text: #c8daf0;
+      --text-dim: #6a8aaa;
+      --text-dimmer: #3a5570;
+      --accent: #4da6ff;
+      --accent2: #00d4aa;
+      --accent3: #ff6b6b;
+      --mono: 'Space Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
-    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(77,166,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(77,166,255,0.03) 1px, transparent 1px); background-size: 48px 48px; pointer-events: none; z-index: 0; }
-    body::after { content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(77,166,255,0.06) 0%, transparent 70%); pointer-events: none; z-index: 0; }
-    .container { max-width: 860px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; background: rgba(8,13,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    nav .inner { max-width: 860px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.05em; text-decoration: none; }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── RADAR GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(77,166,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77,166,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle radial glow at top */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(77,166,255,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: rgba(8,13,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
     .nav-links a:hover { color: var(--accent); }
-    .hero { padding: 160px 0 60px; }
-    .hero-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.1s; }
-    .hero h1 { font-weight: 300; font-size: clamp(38px, 6vw, 62px); line-height: 1.15; letter-spacing: -0.02em; color: #e8f4ff; margin-bottom: 8px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.2s; }
-    .hero h1 strong { font-weight: 500; }
-    .hero-title { font-family: var(--mono); font-size: 13px; color: var(--text-dim); margin-bottom: 32px; letter-spacing: 0.05em; opacity: 0; animation: fadeUp 0.6s ease forwards 0.3s; }
-    .hero-bio { font-size: 16px; color: var(--text-dim); max-width: 560px; line-height: 1.8; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.6s ease forwards 0.4s; }
-    .hero-bio strong { color: var(--text); font-weight: 400; }
-    .hero-links { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s ease forwards 0.5s; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 4px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; text-decoration: none; transition: all 0.2s; }
-    .btn-primary { background: var(--accent); color: #000; font-weight: 700; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 0 100px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+
+    .hero h1 {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: clamp(38px, 6vw, 62px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #e8f4ff;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .hero h1 strong {
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.3s;
+    }
+
+    .hero-bio {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 560px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.4s;
+    }
+
+    .hero-bio strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.5s;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+    }
     .btn-primary:hover { background: #7dbfff; transform: translateY(-1px); }
-    .btn-secondary { background: transparent; color: var(--text-dim); border: 1px solid var(--border-bright); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border-bright);
+    }
     .btn-secondary:hover { color: var(--text); border-color: var(--accent); transform: translateY(-1px); }
-    .feature-box { margin: 64px 0; border: 1px solid var(--border-bright); border-radius: 8px; overflow: hidden; background: var(--panel); opacity: 0; animation: fadeUp 0.7s ease forwards 0.6s; position: relative; }
-    .feature-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-    .feature-header { padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
-    .feature-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent2); box-shadow: 0 0 12px var(--accent2); animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.85); } }
-    .feature-header-text { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); }
-    .feature-header-url { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); }
-    .feature-body { padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-    .feature-desc h3 { font-size: 20px; font-weight: 400; color: #e8f4ff; margin-bottom: 12px; }
-    .feature-desc p { font-size: 14px; color: var(--text-dim); line-height: 1.75; margin-bottom: 16px; }
-    .feature-desc a { font-family: var(--mono); font-size: 12px; color: var(--accent); text-decoration: none; }
+
+    /* ── PRECIPITEAU FEATURE ── */
+    .feature-box {
+      margin: 64px 0;
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.6s;
+      position: relative;
+    }
+
+    .feature-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .feature-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .feature-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent2);
+      box-shadow: 0 0 12px var(--accent2);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .feature-header-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    .feature-header-url {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dimmer);
+    }
+
+    .feature-body {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .feature-desc h3 {
+      font-size: 20px;
+      font-weight: 400;
+      color: #e8f4ff;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-desc p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .feature-desc a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
     .feature-desc a:hover { text-decoration: underline; }
-    .feature-stats { display: flex; flex-direction: column; gap: 12px; }
-    .stat-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; }
-    .stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 4px; }
-    .stat-value { font-family: var(--mono); font-size: 15px; color: var(--accent); }
-    section { padding: 80px 0; border-top: 1px solid var(--border); }
-    .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .exp-item { display: grid; grid-template-columns: 160px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+
+    .feature-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 16px;
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-family: var(--mono);
+      font-size: 15px;
+      color: var(--accent);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
     .exp-item:last-child { border-bottom: none; }
-    .exp-date { font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); line-height: 1.5; }
-    .exp-company { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: 6px; display: block; text-decoration: none; }
+
+    .exp-meta {
+      padding-top: 4px;
+    }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dimmer);
+      line-height: 1.5;
+    }
+
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      margin-top: 6px;
+      text-decoration: none;
+    }
     .exp-company:hover { text-decoration: underline; }
-    .exp-role { font-size: 16px; font-weight: 400; color: #e8f4ff; margin-bottom: 10px; }
-    .exp-bullets { list-style: none; padding: 0; }
-    .exp-bullets li { font-size: 14px; color: var(--text-dim); line-height: 1.75; padding-left: 16px; position: relative; margin-bottom: 6px; }
-    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--text-dimmer); }
-    .exp-bullets li strong { color: var(--text); font-weight: 400; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-    .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 3px; background: var(--bg3); border: 1px solid var(--border); color: var(--text-dimmer); }
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .project-card { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 24px; transition: border-color 0.2s, transform 0.2s; position: relative; overflow: hidden; }
-    .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--border); transition: background 0.2s; }
-    .project-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
-    .project-card:hover::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-    .project-card h3 { font-size: 15px; font-weight: 400; color: #e8f4ff; margin-bottom: 8px; }
-    .project-card p { font-size: 13px; color: var(--text-dim); line-height: 1.7; margin-bottom: 16px; }
-    .project-links { display: flex; gap: 12px; }
-    .project-links a { font-family: var(--mono); font-size: 11px; color: var(--accent); text-decoration: none; }
+
+    .exp-role {
+      font-size: 16px;
+      font-weight: 400;
+      color: #e8f4ff;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-dimmer);
+    }
+
+    .exp-bullets li strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: 3px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-dimmer);
+    }
+
+    /* ── PROJECTS GRID ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--border);
+      transition: background 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
+    }
+
+    .project-card:hover::before {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+
+    .project-card h3 {
+      font-size: 15px;
+      font-weight: 400;
+      color: #e8f4ff;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
     .project-links a:hover { text-decoration: underline; }
 
-    /* PUBLICATIONS */
-    .pub-item { padding: 22px 0; border-bottom: 1px solid var(--border); }
+    /* ── PUBLICATIONS ── */
+    .pub-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
     .pub-item:last-child { border-bottom: none; }
-    .pub-badge { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
-    .badge-review { background: rgba(77,166,255,0.1); color: var(--accent); border: 1px solid rgba(77,166,255,0.3); }
-    .badge-published { background: rgba(0,212,170,0.1); color: var(--accent2); border: 1px solid rgba(0,212,170,0.3); }
-    .pub-title { font-size: 15px; font-weight: 400; color: #e8f4ff; margin-bottom: 6px; line-height: 1.5; }
-    .pub-authors { font-size: 13px; color: var(--text-dim); margin-bottom: 4px; }
-    .pub-authors strong { color: var(--text); font-weight: 400; }
-    .pub-venue { font-family: var(--mono); font-size: 12px; color: var(--text-dimmer); margin-bottom: 10px; }
-    .pub-doi { font-family: var(--mono); font-size: 11px; color: var(--accent); text-decoration: none; }
+
+    .pub-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+
+    .badge-review {
+      background: rgba(77,166,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(77,166,255,0.3);
+    }
+
+    .badge-published {
+      background: rgba(0,212,170,0.1);
+      color: var(--accent2);
+      border: 1px solid rgba(0,212,170,0.3);
+    }
+
+    .pub-title {
+      font-size: 15px;
+      font-weight: 400;
+      color: #e8f4ff;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .pub-authors {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+
+    .pub-authors strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .pub-venue {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dimmer);
+      margin-bottom: 10px;
+    }
+
+    .pub-doi {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
     .pub-doi:hover { text-decoration: underline; }
 
-    /* EDUCATION */
-    .edu-item { display: grid; grid-template-columns: 160px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
     .edu-item:last-child { border-bottom: none; }
-    .edu-year { font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); padding-top: 4px; }
-    .edu-degree { font-size: 16px; font-weight: 400; color: #e8f4ff; margin-bottom: 4px; }
-    .edu-school { font-family: var(--mono); font-size: 12px; color: var(--accent); margin-bottom: 6px; }
-    .edu-detail { font-size: 13px; color: var(--text-dim); }
-    .gpa { display: inline-block; font-family: var(--mono); font-size: 12px; color: var(--accent2); background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); padding: 2px 8px; border-radius: 3px; margin-left: 8px; }
 
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dimmer);
+      padding-top: 4px;
+    }
 
+    .edu-degree {
+      font-size: 16px;
+      font-weight: 400;
+      color: #e8f4ff;
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .edu-detail {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .gpa {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent2);
+      background: rgba(0,212,170,0.08);
+      border: 1px solid rgba(0,212,170,0.2);
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-left: 8px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .skill-group {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+    }
+
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      margin-bottom: 14px;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-pill {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dimmer);
+      letter-spacing: 0.06em;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
-      .nav-links { display: none; }
       .feature-body { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 8px; }
       .edu-item { grid-template-columns: 1fr; gap: 8px; }
       .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <nav>
     <div class="inner">
       <a class="nav-logo" href="#">SP_</a>
@@ -134,11 +719,16 @@
 
   <div class="container">
 
-    <section class="hero" style="border-top:none;">
+    <!-- HERO -->
+    <section class="hero" style="border-top:none; padding-bottom:0;">
       <p class="hero-label">// weather ml engineer</p>
       <h1><strong>Stylianos</strong> Papargyris</h1>
-      <p class="hero-title">Thessaloniki, Greece &nbsp;·&nbsp; Open to remote</p>
-      <p class="hero-bio">Machine Learning Engineer at the intersection of <strong>weather AI and operational forecasting</strong>. I build production systems that turn raw atmospheric data into decisions — from ECMWF ensemble bias correction to real-time precipitation nowcasting covering all of Europe.</p>
+      <p class="hero-title">Thessaloniki, Greece</p>
+      <p class="hero-bio">
+        Machine Learning Engineer at the intersection of <strong>weather AI and operational forecasting</strong>.
+        I build production systems that turn raw atmospheric data into decisions —
+        from ECMWF ensemble bias correction to real-time precipitation nowcasting covering all of Europe.
+      </p>
       <div class="hero-links">
         <a class="btn btn-primary" href="https://www.precipiteau.com" target="_blank">↗ precipiteau.com</a>
         <a class="btn btn-secondary" href="https://github.com/SteliosPapargyris" target="_blank">GitHub</a>
@@ -148,6 +738,7 @@
       </div>
     </section>
 
+    <!-- PRECIPITEAU FEATURE CARD -->
     <div class="feature-box">
       <div class="feature-header">
         <div class="feature-dot"></div>
@@ -157,96 +748,165 @@
       <div class="feature-body">
         <div class="feature-desc">
           <h3>Precipiteau</h3>
-          <p>A real-time European rainfall nowcasting platform covering 35+ countries. Fuses EUMETNET OPERA radar composites, DWD ICON-EU NWP model output, and H-SAF satellite precipitation into a unified interactive map, updated every 15 minutes.</p>
-          <p>Implements the Ramer ice-fraction algorithm for precipitation type diagnosis at 1 km terrain resolution, and generates 1-hour nowcasts via PySTEPS optical-flow.</p>
+          <p>
+            A real-time European rainfall nowcasting platform covering 35+ countries.
+            Fuses EUMETNET OPERA radar composites, DWD ICON-EU NWP model output,
+            and H-SAF satellite precipitation (MSG/SEVIRI) into a unified interactive map,
+            updated every 15 minutes around the clock.
+          </p>
+          <p>
+            Implements the Ramer ice-fraction algorithm for precipitation type diagnosis
+            (rain, snow, freezing rain, ice pellets, hail) at 1 km terrain resolution,
+            and generates 1-hour nowcasts via PySTEPS optical-flow.
+          </p>
           <a href="https://www.precipiteau.com" target="_blank">Open platform →</a>
         </div>
         <div class="feature-stats">
-          <div class="stat-item"><div class="stat-label">Coverage</div><div class="stat-value">35+ European countries</div></div>
-          <div class="stat-item"><div class="stat-label">Update frequency</div><div class="stat-value">Every 15 minutes</div></div>
-          <div class="stat-item"><div class="stat-label">Data sources</div><div class="stat-value">OPERA · ICON-EU · H-SAF</div></div>
-          <div class="stat-item"><div class="stat-label">Nowcast horizon</div><div class="stat-value">1 hour — PySTEPS optical flow</div></div>
-          <div class="stat-item"><div class="stat-label">Stack</div><div class="stat-value">FastAPI · Leaflet · Python</div></div>
+          <div class="stat-item">
+            <div class="stat-label">Coverage</div>
+            <div class="stat-value">35+ European countries</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Update frequency</div>
+            <div class="stat-value">Every 15 minutes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Data sources</div>
+            <div class="stat-value">OPERA · ICON-EU · H-SAF</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Nowcast horizon</div>
+            <div class="stat-value">1 hour — PySTEPS optical flow</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Stack</div>
+            <div class="stat-value">FastAPI · Leaflet · Python</div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
       <div class="section-label">Experience</div>
+
       <div class="exp-item reveal">
-        <div><div class="exp-date">Jan 2025<br>Present</div><a class="exp-company" href="https://weatherxm.com" target="_blank">WeatherXM</a></div>
-        <div>
+        <div class="exp-meta">
+          <div class="exp-date">Jan 2025<br>Present</div>
+          <a class="exp-company" href="https://weatherxm.com" target="_blank">WeatherXM</a>
+        </div>
+        <div class="exp-content">
           <div class="exp-role">Weather Data Scientist</div>
           <ul class="exp-bullets">
             <li>Built an <strong>end-to-end ML pipeline for bias-correcting ECMWF seasonal forecasts</strong> using ERA5 reanalysis, processing 51-member ensembles across 14+ global regions with XGBoost.</li>
             <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> processing ERA5 climate reanalysis to classify destination risk and resolve travel insurance contracts via threshold-based precipitation analysis.</li>
           </ul>
-          <div class="tags"><span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span></div>
+          <div class="tags">
+            <span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span>
+            <span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span>
+          </div>
         </div>
       </div>
+
       <div class="exp-item reveal">
-        <div><div class="exp-date">Oct 2023<br>Jan 2025</div><a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a></div>
-        <div>
+        <div class="exp-meta">
+          <div class="exp-date">Oct 2023<br>Jan 2025</div>
+          <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
+        </div>
+        <div class="exp-content">
           <div class="exp-role">Machine Learning Engineer &amp; IoT Developer</div>
           <ul class="exp-bullets">
             <li>Developed a <strong>reinforcement learning optimisation system</strong> for multi-source heat pump control, dynamically selecting between ambient air, geothermal, and solar energy sources to maximise COP.</li>
             <li>Designed <strong>edge computing solutions</strong> for IoT data execution and sharing in smart building energy management systems.</li>
             <li>Built an ML model for <strong>predictive maintenance of photovoltaic systems</strong> by forecasting State of Charge degradation patterns.</li>
           </ul>
-          <div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">PyTorch</span><span class="tag">IoT / Edge</span><span class="tag">Renewable Energy</span></div>
+          <div class="tags">
+            <span class="tag">Reinforcement Learning</span><span class="tag">PyTorch</span>
+            <span class="tag">IoT / Edge</span><span class="tag">Renewable Energy</span>
+          </div>
         </div>
       </div>
+
       <div class="exp-item reveal">
-        <div><div class="exp-date">Jul 2022<br>Sep 2022</div><a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a></div>
-        <div>
+        <div class="exp-meta">
+          <div class="exp-date">Jul 2022<br>Sep 2022</div>
+          <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
+        </div>
+        <div class="exp-content">
           <div class="exp-role">Machine Learning Engineer — Internship</div>
           <ul class="exp-bullets">
             <li>Prototyped ML models for predictive maintenance of photovoltaic systems, focused on State of Charge degradation forecasting.</li>
           </ul>
-          <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span></div>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">scikit-learn</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
       <div class="section-label">Projects</div>
       <div class="projects-grid">
+
         <div class="project-card reveal">
           <h3>ECMWF Bias Correction Pipeline</h3>
           <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions. Evaluated with CRPS and Brier skill scores.</p>
-          <div class="tags" style="margin-bottom:14px;"><span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span></div>
-          <div class="project-links"><a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a></div>
+          <div class="tags" style="margin-bottom:14px;">
+            <span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a>
+          </div>
         </div>
+
         <div class="project-card reveal">
           <h3>Parametric Insurance Automation</h3>
-          <p>Automated travel insurance contract resolution by processing ERA5 precipitation fields to classify destination risk via threshold-based event triggers.</p>
-          <div class="tags" style="margin-bottom:14px;"><span class="tag">ERA5</span><span class="tag">Climate Risk</span><span class="tag">Python</span></div>
-          <div class="project-links"><a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a></div>
+          <p>Automated travel insurance contract resolution by processing ERA5 precipitation fields to classify destination risk via threshold-based event triggers — fully replacing manual adjudication.</p>
+          <div class="tags" style="margin-bottom:14px;">
+            <span class="tag">ERA5</span><span class="tag">Climate Risk</span><span class="tag">Python</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a>
+          </div>
         </div>
+
         <div class="project-card reveal">
           <h3>AE Compensation for SHFT Spectrometers</h3>
-          <p>Denoising autoencoder pipeline reconstructing distorted interferometric responses from silicon photonic gas sensors into stable reference domains for robust air pollutant detection.</p>
-          <div class="tags" style="margin-bottom:14px;"><span class="tag">Autoencoders</span><span class="tag">PyTorch</span><span class="tag">Gas Sensing</span></div>
-          <div class="project-links"><a href="https://eannconf.org/2026/" target="_blank">EANN 2026 →</a></div>
+          <p>Denoising autoencoder pipeline that reconstructs distorted interferometric responses from silicon photonic gas sensors into stable reference domains, enabling robust on-chip air pollutant detection.</p>
+          <div class="tags" style="margin-bottom:14px;">
+            <span class="tag">Autoencoders</span><span class="tag">PyTorch</span><span class="tag">Gas Sensing</span>
+          </div>
+          <div class="project-links">
+            <a href="https://eannconf.org/2026/" target="_blank">EANN 2026 →</a>
+          </div>
         </div>
+
         <div class="project-card reveal">
           <h3>MSc Thesis — Pollution Detection</h3>
           <p>Deep learning system for environmental pollution detection from sensor data, developed as part of the MSc in Artificial Intelligence at Aristotle University of Thessaloniki.</p>
-          <div class="tags" style="margin-bottom:14px;"><span class="tag">Deep Learning</span><span class="tag">Environmental AI</span></div>
-          <div class="project-links"><a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a></div>
+          <div class="tags" style="margin-bottom:14px;">
+            <span class="tag">Deep Learning</span><span class="tag">Environmental AI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a>
+          </div>
         </div>
+
       </div>
     </section>
 
     <!-- PUBLICATIONS -->
     <section id="publications">
       <div class="section-label">Publications</div>
+
       <div class="pub-item reveal">
         <span class="pub-badge badge-review">Under Review — EANN 2026</span>
         <div class="pub-title">Autoencoder-Based Compensation of Fabrication and Thermal Effects in SHFT Spectrometers for Gas Detection</div>
         <div class="pub-authors"><strong>S. Papargyris</strong>, L. Avramelou, M. Kirtas, C. Fu, S. Toxqui Rodríguez, C. Alonso Ramos, N. Passalis, N. Pleros, A. Tefas</div>
         <div class="pub-venue">19th Artificial Intelligence Applications and Innovations Conference (EANN 2026) · Notification April 2026</div>
       </div>
+
       <div class="pub-item reveal">
         <span class="pub-badge badge-published">Published — Zenodo 2026</span>
         <div class="pub-title">Floods in Southern Suburbs of Athens (January 2026)</div>
@@ -254,19 +914,23 @@
         <div class="pub-venue">Zenodo Data Paper · February 2026</div>
         <a class="pub-doi" href="https://doi.org/10.5281/zenodo.18610297" target="_blank">doi:10.5281/zenodo.18610297 →</a>
       </div>
+
     </section>
 
     <!-- EDUCATION -->
     <section id="education">
       <div class="section-label">Education</div>
+
       <div class="edu-item reveal">
         <div class="edu-year">2023 — 2025</div>
         <div>
           <div class="edu-degree">MSc in Artificial Intelligence <span class="gpa">GPA 9.26 / 10</span></div>
           <div class="edu-school">Aristotle University of Thessaloniki</div>
-          <div class="edu-detail">Thesis: <em>Environmental Pollution Detection using Deep Learning</em><br>Coursework: Deep Learning · Computer Vision · Reinforcement Learning · Probabilistic ML · NLP</div>
+          <div class="edu-detail">Thesis: <em>Environmental Pollution Detection using Deep Learning</em><br>
+          Coursework: Deep Learning · Computer Vision · Reinforcement Learning · Probabilistic ML · NLP</div>
         </div>
       </div>
+
       <div class="edu-item reveal">
         <div class="edu-year">2017 — 2022</div>
         <div>
@@ -275,16 +939,96 @@
           <div class="edu-detail">Thesis: <em>Autonomous Driving and Obstacle Avoidance System of a Small Electric Vehicle</em></div>
         </div>
       </div>
+
     </section>
 
-  </div>
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">ML &amp; Deep Learning</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">PyTorch</span>
+            <span class="skill-pill">TensorFlow</span>
+            <span class="skill-pill">XGBoost</span>
+            <span class="skill-pill">scikit-learn</span>
+            <span class="skill-pill">PySTEPS</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Weather &amp; Climate Data</div>
+          <div class="skill-pills">
+            <span class="skill-pill">ERA5</span>
+            <span class="skill-pill">ECMWF ensembles</span>
+            <span class="skill-pill">OPERA radar</span>
+            <span class="skill-pill">ICON-EU NWP</span>
+            <span class="skill-pill">H-SAF satellite</span>
+            <span class="skill-pill">NEXRAD</span>
+            <span class="skill-pill">netCDF / xarray</span>
+            <span class="skill-pill">GRIB2</span>
+            <span class="skill-pill">ENTSO-E</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Infrastructure &amp; MLOps</div>
+          <div class="skill-pills">
+            <span class="skill-pill">FastAPI</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">AWS</span>
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-group reveal">
+          <div class="skill-group-label">Specialisations</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Nowcasting</span>
+            <span class="skill-pill">NWP Bias Correction</span>
+            <span class="skill-pill">Ensemble Post-Processing</span>
+            <span class="skill-pill">Optical Flow</span>
+            <span class="skill-pill">Parametric Insurance</span>
+            <span class="skill-pill">Renewable Energy ML</span>
+            <span class="skill-pill">RL for Energy</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /container -->
+
+  <footer>
+    <div class="container">
+      <p>
+        Stylianos Papargyris &nbsp;·&nbsp;
+        <a href="mailto:papargirisstelios3@gmail.com">papargirisstelios3@gmail.com</a>
+        &nbsp;·&nbsp;
+        Thessaloniki, Greece
+      </p>
+    </div>
+  </footer>
 
   <script>
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 80);
+          observer.unobserve(entry.target);
+        }
+      });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
