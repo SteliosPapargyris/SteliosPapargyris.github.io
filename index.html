@@ -732,6 +732,7 @@
         <li><a href="#publications">Publications</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#certificates">Certificates</a></li>
       </ul>
     </div>
   </nav>
@@ -833,10 +834,10 @@
         <div class="exp-content">
           <div class="exp-role">Weather Data Scientist</div>
           <ul class="exp-bullets">
-            <li>Built an <strong>end-to-end ML pipeline for bias-correcting ECMWF seasonal forecasts</strong> using ERA5 reanalysis, processing 51-member ensembles across 14+ global regions with XGBoost.</li>
-            <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> processing ERA5 climate reanalysis to classify destination risk and resolve travel insurance contracts via threshold-based precipitation analysis.</li>
-            <li>Contributed <strong>feature additions</strong> and <strong>bug fixes</strong> to the <strong><a href="https://docs.weatherxm.com/rewards/data-quality" target="_blank" style="color:#e8f4ff;">Quality of Data (QoD) pipeline</a></strong>, including integrating <a href="https://docs.weatherxm.com/weather-and-science/quality-mechanisms/isd-full-documentation.mdx" target="_blank" style="color:#e8f4ff;">ISD model scores</a> into the QoD scoring logic and resolving edge cases in the MLflow and batch inference pipelines.</li>
-            <li>Built a <strong>comprehensive automated pytest suite</strong> for the <a href="https://weatherxm.com/forecast-accuracy-tracking/" target="_blank" style="color:#e8f4ff;">Quality of Forecasts (QoF)</a> pipeline, covering forecast evaluation, meteorology utilities, observation processing, and data transformer modules — with fixture datasets for reproducible testing.</li>
+            <li>Designed and deployed a <strong>production XGBoost pipeline that bias-corrects ECMWF 51-member seasonal ensemble forecasts</strong> against ERA5 reanalysis across 14+ global regions — evaluated with <strong>RMSE for temperature, wind speed, wind direction, humidity and pressure — and HSS for precipitation</strong>, data ingested via Copernicus CDS and outputs delivered to AWS S3.</li>
+            <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> for <strong><a href="https://parahubxm.com/" target="_blank" style="color:var(--accent);">ParahubXM</a></strong> (WeatherXM's parametric insurance platform), processing ERA5 climate reanalysis to classify risk and resolve contracts across travel insurance and crop/farmer protection use cases via threshold-based precipitation analysis.</li>
+            <li>Contributed <strong>feature additions</strong> and <strong>bug fixes</strong> to the <strong><a href="https://docs.weatherxm.com/rewards/data-quality" target="_blank" style="color:var(--accent);">Quality of Data (QoD) pipeline</a></strong>, including integrating <a href="https://docs.weatherxm.com/weather-and-science/quality-mechanisms/isd-full-documentation.mdx" target="_blank" style="color:var(--accent);">ISD model scores</a> into the QoD scoring logic and resolving edge cases in the MLflow and batch inference pipelines.</li>
+            <li>Built a <strong>comprehensive automated pytest suite</strong> for the <a href="https://weatherxm.com/forecast-accuracy-tracking/" target="_blank" style="color:var(--accent);">Quality of Forecasts (QoF)</a> pipeline, covering forecast evaluation, meteorology utilities, observation processing, and data transformer modules — with fixture datasets for reproducible testing.</li>
           </ul>
           <div class="tags">
             <span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span>
@@ -853,8 +854,8 @@
         <div class="exp-content">
           <div class="exp-role">Machine Learning Engineer &amp; IoT Developer</div>
           <ul class="exp-bullets">
-            <li>Developed a <strong>reinforcement learning optimisation system</strong> for multi-source heat pump control, dynamically selecting between ambient air, geothermal, and solar energy sources to maximise COP — part of the <a href="https://project-seeds.eu/" target="_blank" style="color:#e8f4ff;">SEEDS project</a>.</li>
-            <li>Designed <strong>edge computing solutions</strong> for IoT data execution and sharing in smart building energy management systems — part of the <a href="https://seed4ai.ee.duth.gr/el/" target="_blank" style="color:#e8f4ff;">SEED4AI project</a>.</li>
+            <li>Developed a <strong>reinforcement learning optimisation system</strong> for multi-source heat pump control, dynamically selecting between ambient air, geothermal, and solar energy sources to maximise COP — part of the <a href="https://project-seeds.eu/" target="_blank" style="color:var(--accent);">SEEDS project</a>.</li>
+            <li>Designed <strong>edge computing solutions</strong> for IoT data execution and sharing in smart building energy management systems — part of the <a href="https://seed4ai.ee.duth.gr/el/" target="_blank" style="color:var(--accent);">SEED4AI project</a>.</li>
           </ul>
           <div class="tags">
             <span class="tag">Reinforcement Learning</span><span class="tag">PyTorch</span>
@@ -899,7 +900,7 @@
         <div class="project-card reveal">
           <h3>ECMWF Bias Correction Pipeline</h3>
           <p class="project-source">WeatherXM</p>
-          <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions. Evaluated with CRPS and Brier skill scores.</p>
+          <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions. Evaluated with RMSE for temperature, wind speed, wind direction, humidity and pressure — and HSS for precipitation.</p>
           <div class="tags" style="margin-bottom:14px;">
             <span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span><span class="tag">xarray</span><span class="tag">scikit-learn</span><span class="tag">Dask</span><span class="tag">CDS API</span><span class="tag">pandas</span>
           </div>
@@ -919,8 +920,8 @@
 
         <div class="project-card reveal">
           <h3>Parametric Insurance Automation</h3>
-          <p class="project-source">WeatherXM</p>
-          <p>Automated travel insurance contract resolution by processing ERA5 precipitation fields to classify destination risk via threshold-based event triggers — fully replacing manual adjudication.</p>
+          <p class="project-source">WeatherXM · ParahubXM</p>
+          <p>Automated parametric contract resolution for travel insurance and crop/farmer protection, processing ERA5 precipitation fields to classify risk via threshold-based event triggers — fully replacing manual adjudication.</p>
           <div class="tags" style="margin-bottom:14px;">
             <span class="tag">ERA5</span><span class="tag">Climate Risk</span><span class="tag">xarray</span><span class="tag">pandas</span><span class="tag">netCDF4</span><span class="tag">Redis</span>
           </div>
@@ -1049,6 +1050,57 @@
         </div>
 
       </div>
+    </section>
+
+    <!-- CERTIFICATES & LANGUAGES -->
+    <section id="certificates">
+      <div class="section-label">Certificates &amp; Languages</div>
+
+      <div style="margin-bottom:36px;">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:16px;">Certifications</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div class="reveal" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <a href="https://coursera.org/share/25d80c922af8f539a25a5ff77083d349" target="_blank" style="font-size:14px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Deep Learning Specialization</a>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--text-dimmer);">DeepLearning.AI · Coursera</span>
+          </div>
+
+          <div class="reveal" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <a href="https://coursera.org/share/ba0a4dbb9e726c978884c41b3a3be6eb" target="_blank" style="font-size:14px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Machine Learning Specialization</a>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--text-dimmer);">DeepLearning.AI · Coursera</span>
+          </div>
+
+          <div class="reveal" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <a href="https://coursera.org/share/15455227c1e6c3a2c2c916de205a1e20" target="_blank" style="font-size:14px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Python 3 Programming Specialization</a>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--text-dimmer);">University of Michigan · Coursera</span>
+          </div>
+
+          <div class="reveal" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <a href="https://coursera.org/share/1a332fdb545a54d002e8e6a7c4299230" target="_blank" style="font-size:14px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">Mathematics for Machine Learning Specialization</a>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--text-dimmer);">Imperial College London · Coursera</span>
+          </div>
+
+          <div class="reveal" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <a href="https://www.udemy.com/certificate/UC-92170945-05b0-4d23-a49c-8e5687e2ff37/" target="_blank" style="font-size:14px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">SQL Course</a>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--text-dimmer);">Udemy</span>
+          </div>
+
+          <div class="reveal" style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <a target="_blank" style="font-size:14px;color:var(--text);text-decoration:none;letter-spacing:-0.01em;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">English Proficiency (C2)</a>
+            <span style="font-family:var(--mono);font-size:11px;color:var(--text-dimmer);">University of Michigan</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:16px;">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Greek — Native</span>
+          <span class="skill-pill">English — Proficient</span>
+        </div>
+      </div>
+
     </section>
 
   </div><!-- /container -->
