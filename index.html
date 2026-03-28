@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stylianos Papargyris — Weather ML Engineer</title>
-  <meta name="description" content="Machine Learning Engineer specialising in weather AI, nowcasting, and operational forecasting systems. Builder of Precipiteau."/>
+  <title>Stylianos Papargyris — Data Scientist | AI &amp; Machine Learning | Weather AI, Climate &amp; Earth Observation</title>
+  <meta name="description" content="Data Scientist specialising in AI and machine learning for weather AI, climate, and earth observation. Builder of Precipiteau."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -281,8 +281,17 @@
       font-size: 20px;
       font-weight: 400;
       color: #e8f4ff;
-      margin-bottom: 12px;
+      margin-bottom: 4px;
       letter-spacing: -0.01em;
+    }
+
+    .feature-role {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px !important;
     }
 
     .feature-desc p {
@@ -479,7 +488,17 @@
       font-size: 15px;
       font-weight: 400;
       color: #e8f4ff;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+    }
+
+    .project-source {
+      font-size: 7px;
+      font-weight: 400;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.8;
     }
 
     .project-card p {
@@ -729,13 +748,18 @@
         margin-bottom: 28px;
         display: block;
       ">
-      <p class="hero-label">Weather ML Engineer</p>
-      <h1>Stylianos Papargyris</h1>
-      <p class="hero-title">Thessaloniki, Greece</p>
+      <p class="hero-label">Data Scientist | AI &amp; Machine Learning | Weather AI, Climate &amp; Earth Observation</p>
+      <h1>Stylianos <span style="color:var(--text-dim);font-weight:300;">(Stelios)</span> Papargyris</h1>
+      <p class="hero-title">Thessaloniki, Greece · Remote · Open to Relocation</p>
+      <p style="font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:0.08em;margin-bottom:28px;margin-top:-4px;">
+        <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 8px var(--accent2);margin-right:7px;vertical-align:middle;"></span>
+        Available — Open to new roles
+      </p>
       <p class="hero-bio">
-        Machine Learning Engineer at the intersection of <strong>weather AI and operational forecasting</strong>.
-        I build production systems that turn raw atmospheric data into decisions —
-        from ECMWF ensemble bias correction to real-time precipitation nowcasting covering all of Europe.
+        Data Scientist at the intersection of <strong>AI, weather, earth observation, and environmental data</strong>.
+        I design and build systems that turn complex geospatial and atmospheric data into decisions —
+        from ECMWF ensemble post-processing to real-time precipitation nowcasting across Europe.
+        Currently seeking roles in <strong>applied ML, weather AI, or climate tech</strong>.
       </p>
       <div class="hero-links">
         <a class="btn btn-primary" href="https://www.precipiteau.com" target="_blank">↗ precipiteau.com</a>
@@ -756,16 +780,18 @@
       <div class="feature-body">
         <div class="feature-desc">
           <h3>Precipiteau</h3>
+          <p class="feature-role">Owner</p>
           <p>
-            A real-time European rainfall nowcasting platform covering 35+ countries.
-            Fuses EUMETNET OPERA radar composites, DWD ICON-EU NWP model output,
-            and H-SAF satellite precipitation (MSG/SEVIRI) into a unified interactive map,
-            updated every 15 minutes around the clock.
+            A fully self-built, operational European precipitation platform covering 35+ countries, running 24/7.
+            Delivers five distinct data products on a single interactive map: live radar rain-rate (EUMETNET OPERA),
+            radar–satellite fusion (H-SAF MSG/SEVIRI fill-in), daily accumulation, raw reflectivity
+            (ZhMax in dBZ), and a 1-hour optical-flow nowcast — every layer auto-refreshed every 15 minutes.
           </p>
           <p>
-            Implements the Ramer ice-fraction algorithm for precipitation type diagnosis
-            (rain, snow, freezing rain, ice pellets, hail) at 1 km terrain resolution,
-            and generates 1-hour nowcasts via PySTEPS optical-flow.
+            Custom-implements the Ramer ice-fraction algorithm against DWD ICON-EU vertical profiles
+            downscaled to a 1 km terrain DEM, diagnosing precipitation phase (rain, snow, freezing rain,
+            ice pellets, hail) across the full European domain.
+            GPU-accelerated rendering with adaptive preloading for smooth animation on any device.
           </p>
           <a href="https://www.precipiteau.com" target="_blank">Open platform →</a>
         </div>
@@ -784,7 +810,7 @@
           </div>
           <div class="stat-item">
             <div class="stat-label">Nowcast horizon</div>
-            <div class="stat-value">1 hour — PySTEPS optical flow</div>
+            <div class="stat-value">60 min ahead</div>
           </div>
           <div class="stat-item">
             <div class="stat-label">Stack</div>
@@ -859,10 +885,10 @@
       <div class="projects-grid">
 
         <div class="project-card reveal">
-          <h3>Precipiteau</h3>
-          <p>Real-time European rainfall nowcasting platform covering 35+ countries. Fuses OPERA radar, ICON-EU NWP, and H-SAF satellite data into an interactive map updated every 15 minutes, with 1-hour PySTEPS optical-flow nowcasts and precipitation type diagnosis at 1 km resolution.</p>
+          <h3>Precipiteau <span style="font-size:10px;color:var(--accent2);font-weight:400;letter-spacing:0.1em;text-transform:uppercase;margin-left:6px;vertical-align:middle;">Owner</span></h3>
+          <p>Fully self-built operational platform delivering five precipitation data products across 35+ European countries: radar rain-rate, radar–satellite fusion, daily accumulation, raw reflectivity (ZhMax), and a 1-hour optical-flow nowcast. Custom Ramer ice-fraction algorithm on a 1 km terrain DEM for full precipitation-type diagnosis. GPU-accelerated rendering, 15-minute refresh cycle, 24/7.</p>
           <div class="tags" style="margin-bottom:14px;">
-            <span class="tag">PySTEPS</span><span class="tag">FastAPI</span><span class="tag">Leaflet</span><span class="tag">OPERA</span><span class="tag">ICON-EU</span>
+            <span class="tag">PySTEPS</span><span class="tag">FastAPI</span><span class="tag">Leaflet</span><span class="tag">OPERA</span><span class="tag">ICON-EU</span><span class="tag">H-SAF</span><span class="tag">xarray</span><span class="tag">SciPy</span><span class="tag">GeoPandas</span><span class="tag">rasterio</span>
           </div>
           <div class="project-links">
             <a href="https://www.precipiteau.com" target="_blank">Live Platform →</a>
@@ -871,45 +897,40 @@
 
         <div class="project-card reveal">
           <h3>ECMWF Bias Correction Pipeline</h3>
+          <p class="project-source">WeatherXM</p>
           <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions. Evaluated with CRPS and Brier skill scores.</p>
           <div class="tags" style="margin-bottom:14px;">
-            <span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span>
+            <span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span><span class="tag">xarray</span><span class="tag">scikit-learn</span><span class="tag">Dask</span><span class="tag">CDS API</span><span class="tag">pandas</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <h3>Environmental Pollution Detection using Deep Learning</h3>
+          <p class="project-source">MSc Thesis · Aristotle University of Thessaloniki</p>
+          <p>End-to-end deep learning pipeline for detecting air pollutants from silicon photonic SHFT spectrometer data — combining a denoising autoencoder for sensor compensation with a 1D CNN classifier. Research resulted in a paper submitted to EANN 2026.</p>
+          <div class="tags" style="margin-bottom:14px;">
+            <span class="tag">PyTorch</span><span class="tag">Autoencoders</span><span class="tag">1D CNN</span><span class="tag">Transfer Learning</span><span class="tag">Environmental AI</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a>
+            <a href="https://github.com/SteliosPapargyris/MSc_Thesis_Environmental-Pollution-Detection-Deep-Learning" target="_blank">GitHub →</a>
           </div>
         </div>
 
         <div class="project-card reveal">
           <h3>Parametric Insurance Automation</h3>
+          <p class="project-source">WeatherXM</p>
           <p>Automated travel insurance contract resolution by processing ERA5 precipitation fields to classify destination risk via threshold-based event triggers — fully replacing manual adjudication.</p>
           <div class="tags" style="margin-bottom:14px;">
-            <span class="tag">ERA5</span><span class="tag">Climate Risk</span><span class="tag">Python</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a>
+            <span class="tag">ERA5</span><span class="tag">Climate Risk</span><span class="tag">xarray</span><span class="tag">pandas</span><span class="tag">netCDF4</span><span class="tag">Redis</span>
           </div>
         </div>
 
         <div class="project-card reveal">
-          <h3>AE Compensation for SHFT Spectrometers</h3>
-          <p>Denoising autoencoder pipeline that reconstructs distorted interferometric responses from silicon photonic gas sensors into stable reference domains, enabling robust on-chip air pollutant detection.</p>
+          <h3>Weather Data Downloader</h3>
+          <p class="project-source">WeatherXM</p>
+          <p>Python CLI and library for bulk-downloading ERA5 reanalysis from Google Cloud ARCO-ERA5 (Zarr) and ECMWF seasonal forecasts from Copernicus CDS. Supports batch multi-station downloads with 3×3 grid spatial extraction, automatic unit conversion, geocoding, and structured Parquet output to local or S3 storage.</p>
           <div class="tags" style="margin-bottom:14px;">
-            <span class="tag">Autoencoders</span><span class="tag">PyTorch</span><span class="tag">Gas Sensing</span>
-          </div>
-          <div class="project-links">
-            <a href="https://eannconf.org/2026/" target="_blank">EANN 2026 →</a>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <h3>MSc Thesis — Pollution Detection</h3>
-          <p>Deep learning system for environmental pollution detection from sensor data, developed as part of the MSc in Artificial Intelligence at Aristotle University of Thessaloniki.</p>
-          <div class="tags" style="margin-bottom:14px;">
-            <span class="tag">Deep Learning</span><span class="tag">Environmental AI</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/SteliosPapargyris" target="_blank">GitHub →</a>
+            <span class="tag">ERA5</span><span class="tag">CDS API</span><span class="tag">xarray</span><span class="tag">Dask</span><span class="tag">Zarr</span><span class="tag">Parquet</span><span class="tag">AWS S3</span>
           </div>
         </div>
 
@@ -947,7 +968,7 @@
           <div class="edu-degree">MSc in Artificial Intelligence <span class="gpa">GPA 9.26 / 10</span></div>
           <div class="edu-school">Aristotle University of Thessaloniki</div>
           <div class="edu-detail">Thesis: <em>Environmental Pollution Detection using Deep Learning</em><br>
-          Coursework: Deep Learning · Computer Vision · Reinforcement Learning · Probabilistic ML · NLP</div>
+          Coursework: Machine Learning · Deep Learning · Computational Intelligence · Biosignal Analysis · Intelligent Agent Systems</div>
         </div>
       </div>
 
@@ -956,7 +977,8 @@
         <div>
           <div class="edu-degree">MEng in Electrical &amp; Computer Engineering</div>
           <div class="edu-school">Democritus University of Thrace</div>
-          <div class="edu-detail">Thesis: <em>Autonomous Driving and Obstacle Avoidance System of a Small Electric Vehicle</em></div>
+          <div class="edu-detail">Thesis: <em>Autonomous Driving and Obstacle Avoidance System of a Small Electric Vehicle</em><br>
+          Coursework: Probability &amp; Statistics · Signals &amp; Systems · Algorithms &amp; Data Structures · Control Systems · Renewable Energy · Sensors · Scientific Computing</div>
         </div>
       </div>
 
@@ -976,6 +998,7 @@
             <span class="skill-pill">XGBoost</span>
             <span class="skill-pill">scikit-learn</span>
             <span class="skill-pill">PySTEPS</span>
+            <span class="skill-pill">Signal Processing</span>
           </div>
         </div>
 
@@ -987,10 +1010,14 @@
             <span class="skill-pill">OPERA radar</span>
             <span class="skill-pill">ICON-EU NWP</span>
             <span class="skill-pill">H-SAF satellite</span>
-            <span class="skill-pill">NEXRAD</span>
+            <span class="skill-pill">Weather Station Observations</span>
+            <span class="skill-pill">Numerical Weather Prediction</span>
+            <span class="skill-pill">Timeseries</span>
             <span class="skill-pill">netCDF / xarray</span>
             <span class="skill-pill">GRIB2</span>
-            <span class="skill-pill">ENTSO-E</span>
+            <span class="skill-pill">Dask</span>
+            <span class="skill-pill">Zarr</span>
+            <span class="skill-pill">Parquet</span>
           </div>
         </div>
 
@@ -1002,6 +1029,8 @@
             <span class="skill-pill">AWS</span>
             <span class="skill-pill">Git</span>
             <span class="skill-pill">SQL</span>
+            <span class="skill-pill">MLflow</span>
+            <span class="skill-pill">Redis</span>
           </div>
         </div>
 
