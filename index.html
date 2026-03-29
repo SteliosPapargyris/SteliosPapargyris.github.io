@@ -846,7 +846,7 @@
         <div class="exp-content">
           <div class="exp-role">Weather Data Scientist</div>
           <ul class="exp-bullets">
-            <li>Designed and deployed a <strong>production XGBoost pipeline that bias-corrects ECMWF 51-member seasonal ensemble forecasts</strong> against ERA5 reanalysis across 14+ global regions — evaluated with <strong>RMSE for temperature, wind speed, wind direction, humidity and pressure — and HSS for precipitation</strong>, data ingested via Copernicus CDS and outputs delivered to AWS S3.</li>
+            <li>Designed and deployed a <strong>production XGBoost pipeline that bias-corrects ECMWF 51-member seasonal ensemble forecasts</strong> against ERA5 reanalysis across 14+ global regions — achieving <strong>+52% HSS improvement for precipitation</strong> and <strong>30–50% RMSE reduction for temperature</strong>, with RMSE reductions of 25–29% across wind speed, humidity, and pressure; data ingested via Copernicus CDS and outputs delivered to AWS S3.</li>
             <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> for <strong><a href="https://parahubxm.com/" target="_blank" style="color:var(--accent);">ParahubXM</a></strong> (WeatherXM's parametric insurance platform), processing ERA5 climate reanalysis to classify risk and resolve contracts across travel insurance and crop/farmer protection use cases via threshold-based precipitation analysis.</li>
             <li>Contributed <strong>feature additions</strong> and <strong>bug fixes</strong> to the <strong><a href="https://docs.weatherxm.com/rewards/data-quality" target="_blank" style="color:var(--accent);">Quality of Data (QoD) pipeline</a></strong>, including integrating <a href="https://docs.weatherxm.com/weather-and-science/quality-mechanisms/isd-full-documentation.mdx" target="_blank" style="color:var(--accent);">ISD model scores</a> into the QoD scoring logic and resolving edge cases in the MLflow and batch inference pipelines.</li>
             <li>Built a <strong>comprehensive automated pytest suite</strong> for the <a href="https://weatherxm.com/forecast-accuracy-tracking/" target="_blank" style="color:var(--accent);">Quality of Forecasts (QoF)</a> pipeline, covering forecast evaluation, meteorology utilities, observation processing, and data transformer modules — with fixture datasets for reproducible testing.</li>
@@ -912,7 +912,7 @@
         <div class="project-card reveal">
           <h3>ECMWF Bias Correction Pipeline</h3>
           <p class="project-source">WeatherXM</p>
-          <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions. Evaluated with RMSE for temperature, wind speed, wind direction, humidity and pressure — and HSS for precipitation.</p>
+          <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions — achieving +52% HSS improvement for precipitation and 30–50% RMSE reduction for temperature, with 25–29% RMSE reductions across wind speed, humidity, and pressure.</p>
           <div class="tags" style="margin-bottom:14px;">
             <span class="tag">ECMWF</span><span class="tag">XGBoost</span><span class="tag">ERA5</span><span class="tag">xarray</span><span class="tag">scikit-learn</span><span class="tag">Dask</span><span class="tag">CDS API</span><span class="tag">pandas</span>
           </div>
