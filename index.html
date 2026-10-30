@@ -875,14 +875,14 @@
         <div class="exp-content">
           <div class="exp-role">Weather Data Scientist</div>
           <ul class="exp-bullets">
-            <li>Designed and deployed a <strong>production XGBoost pipeline that bias-corrects ECMWF 51-member seasonal ensemble forecasts</strong> against ERA5 reanalysis across 14+ global regions — achieving <strong>+52% HSS improvement for precipitation</strong> and <strong>30–50% RMSE reduction for temperature</strong>, with RMSE reductions of 25–29% across wind speed, humidity, and pressure; data ingested via Copernicus CDS and outputs delivered to AWS S3.</li>
+            <li>Designed and deployed a <strong>production XGBoost pipeline that bias-corrects ECMWF 51-member seasonal ensemble forecasts</strong> against ERA5 reanalysis across 14+ global regions — achieving <strong>+52% HSS improvement for precipitation</strong> and <strong>30–50% RMSE reduction for temperature</strong>, with <strong>25–29% RMSE reductions</strong> across wind speed, humidity, and pressure; data ingested via Copernicus CDS and outputs delivered to AWS S3.</li>
             <li>Designed and deployed an <strong>automated parametric insurance resolution system</strong> for <strong><a href="https://parahubxm.com/" target="_blank" style="color:var(--accent);">ParahubXM</a></strong> (WeatherXM's parametric insurance platform), processing ERA5 climate reanalysis to classify risk and resolve contracts across travel insurance and crop/farmer protection use cases via threshold-based precipitation analysis.</li>
             <li>Contributed <strong>feature additions</strong> and <strong>bug fixes</strong> to the <strong><a href="https://docs.weatherxm.com/rewards/data-quality" target="_blank" style="color:var(--accent);">Quality of Data (QoD) pipeline</a></strong>, including integrating <a href="https://docs.weatherxm.com/weather-and-science/quality-mechanisms/isd-full-documentation.mdx" target="_blank" style="color:var(--accent);">ISD model scores</a> into the QoD scoring logic and resolving edge cases in the MLflow and batch inference pipelines.</li>
             <li>Built a <strong>comprehensive automated pytest suite</strong> for the <a href="https://weatherxm.com/forecast-accuracy-tracking/" target="_blank" style="color:var(--accent);">Quality of Forecasts (QoF)</a> pipeline, covering forecast evaluation, meteorology utilities, observation processing, and data transformer modules — with fixture datasets for reproducible testing.</li>
           </ul>
           <div class="tags">
             <span class="tag">Machine Learning</span><span class="tag">ERA5</span><span class="tag">ECMWF</span><span class="tag">XGBoost</span>
-            <span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span>
+            <span class="tag">Ensemble post-processing</span><span class="tag">netCDF / xarray</span><span class="tag">MLflow</span><span class="tag">pytest</span>
           </div>
         </div>
       </div>
@@ -911,9 +911,9 @@
           <a class="exp-company" href="https://www.certh.gr" target="_blank">CERTH</a>
         </div>
         <div class="exp-content">
-          <div class="exp-role">Machine Learning Engineer — Internship</div>
+          <div class="exp-role">Machine Learning Engineer (Internship)</div>
           <ul class="exp-bullets">
-            <li>Prototyped ML models for predictive maintenance of photovoltaic systems, focused on State of Charge degradation forecasting.</li>
+            <li>Prototyped ML models for predictive maintenance of photovoltaic systems, focused on State of Charge (SOC) degradation forecasting.</li>
           </ul>
           <div class="tags">
             <span class="tag">Python</span><span class="tag">scikit-learn</span>
@@ -929,9 +929,9 @@
 
         <div class="project-card reveal">
           <h3>Precipiteau <span style="font-size:10px;color:var(--accent2);font-weight:400;letter-spacing:0.1em;text-transform:uppercase;margin-left:6px;vertical-align:middle;">Owner</span></h3>
-          <p>Fully self-built operational platform delivering five precipitation data products across 35+ European countries: radar rain-rate, radar–satellite fusion, daily accumulation, raw reflectivity (ZhMax), and a 1-hour optical-flow nowcast. Custom Ramer ice-fraction algorithm on a 1 km terrain DEM for full precipitation-type diagnosis. GPU-accelerated rendering, 15-minute refresh cycle, 24/7.</p>
+          <p>Fully self-built, 24/7 operational nowcasting platform covering 35+ European countries, fusing EUMETNET OPERA radar, DWD ICON-EU NWP, and H-SAF satellite data. Delivers five live data products (radar rain-rate, radar–satellite fusion, daily accumulation, raw reflectivity, 1-hour optical-flow nowcast) updated every 15 minutes, with custom Ramer ice-fraction precipitation-type diagnosis on a 1 km terrain DEM and GPU-accelerated rendering.</p>
           <div class="tags" style="margin-bottom:14px;">
-            <span class="tag">PySTEPS</span><span class="tag">FastAPI</span><span class="tag">Leaflet</span><span class="tag">OPERA</span><span class="tag">ICON-EU</span><span class="tag">H-SAF</span><span class="tag">xarray</span><span class="tag">SciPy</span><span class="tag">GeoPandas</span><span class="tag">rasterio</span>
+            <span class="tag">PySTEPS</span><span class="tag">FastAPI</span><span class="tag">Leaflet</span><span class="tag">Python</span><span class="tag">OPERA</span><span class="tag">ICON-EU</span><span class="tag">H-SAF</span><span class="tag">xarray</span><span class="tag">SciPy</span><span class="tag">GeoPandas</span><span class="tag">rasterio</span>
           </div>
           <div class="project-links">
             <a href="https://www.precipiteau.com" target="_blank">Live Platform →</a>
@@ -939,7 +939,7 @@
         </div>
 
         <div class="project-card reveal">
-          <h3>ECMWF Bias Correction Pipeline</h3>
+          <h3>ECMWF Seasonal Forecast Bias Correction</h3>
           <p class="project-source">WeatherXM</p>
           <p>Production XGBoost pipeline correcting systematic biases in ECMWF 51-member seasonal ensemble forecasts using ERA5 reanalysis across 14+ global regions — achieving +52% HSS improvement for precipitation and 30–50% RMSE reduction for temperature, with 25–29% RMSE reductions across wind speed, humidity, and pressure.</p>
           <div class="tags" style="margin-bottom:14px;">
@@ -950,7 +950,7 @@
         <div class="project-card reveal">
           <h3>Environmental Pollution Detection using Deep Learning</h3>
           <p class="project-source">MSc Thesis · Aristotle University of Thessaloniki</p>
-          <p>End-to-end deep learning pipeline for detecting air pollutants from silicon photonic SHFT spectrometer data — combining a denoising autoencoder for sensor compensation with a 1D CNN classifier. Research resulted in a paper published at EANN/EAAAI 2026 (Springer CCIS).</p>
+          <p>End-to-end deep learning pipeline for detecting air pollutants from silicon photonic SHFT spectrometer data — combining a denoising autoencoder for sensor compensation (fabrication and thermal effects) with a 1D CNN classifier. Research resulted in a first-author paper published at EANN/EAAAI 2026 (Springer CCIS).</p>
           <div class="tags" style="margin-bottom:14px;">
             <span class="tag">Deep Learning</span><span class="tag">PyTorch</span><span class="tag">Autoencoders</span><span class="tag">1D CNN</span><span class="tag">Transfer Learning</span><span class="tag">Environmental AI</span>
           </div>
@@ -988,20 +988,18 @@
       <div class="edu-item reveal">
         <div class="edu-year">Oct 2023 — Sep 2025</div>
         <div>
-          <div class="edu-degree">MSc in Artificial Intelligence <span class="gpa">GPA 9.26 / 10</span></div>
+          <div class="edu-degree">MSc in Artificial Intelligence <span class="gpa">GPA 9.26 / 10.0</span></div>
           <div class="edu-school">Aristotle University of Thessaloniki</div>
-          <div class="edu-detail">Thesis: <a href="https://ikee.lib.auth.gr/record/372400/files/GRI-2026-52994.pdf" target="_blank" style="color:var(--accent);text-decoration:none;"><em>Environmental Pollution Detection using Deep Learning</em></a><br>
-          Coursework: Machine Learning · Deep Learning · Computational Intelligence · Biosignal Analysis · Intelligent Agent Systems</div>
+          <div class="edu-detail">Thesis: <a href="https://ikee.lib.auth.gr/record/372400/files/GRI-2026-52994.pdf" target="_blank" style="color:var(--accent);text-decoration:none;"><em>Environmental Pollution Detection using Deep Learning</em></a></div>
         </div>
       </div>
 
       <div class="edu-item reveal">
         <div class="edu-year">Oct 2017 — Dec 2022</div>
         <div>
-          <div class="edu-degree">MEng in Electrical &amp; Computer Engineering <span class="gpa">GPA 7.19 / 10</span></div>
+          <div class="edu-degree">MEng in Electrical &amp; Computer Engineering <span class="gpa">GPA 7.19 / 10.0</span></div>
           <div class="edu-school">Democritus University of Thrace</div>
-          <div class="edu-detail">Thesis: <em>Autonomous Driving and Obstacle Avoidance System of a Small Electric Vehicle</em><br>
-          Coursework: Probability &amp; Statistics · Signals &amp; Systems · Algorithms &amp; Data Structures · Control Systems · Renewable Energy · Sensors · Scientific Computing</div>
+          <div class="edu-detail">Thesis: <em>Study and Experimental Application of an Autonomous Driving and Obstacle Avoidance System of a Small Electric Vehicle</em></div>
         </div>
       </div>
 
@@ -1092,7 +1090,7 @@
         <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:16px;">Languages</div>
         <div class="skill-pills">
           <span class="skill-pill">Greek — Native</span>
-          <span class="skill-pill">English — Proficient</span>
+          <span class="skill-pill">English — Professional Working Proficiency (C2)</span>
         </div>
       </div>
 
